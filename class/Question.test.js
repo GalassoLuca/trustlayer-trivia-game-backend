@@ -7,3 +7,10 @@ test('should throw if question is missing', t => {
   t.is(error.name, 'TypeError')
   t.is(error.message, 'question is required')
 })
+
+test('should throw if answer are not exactly four', t => {
+  const error = t.throws(() => new Question())
+
+  t.is(error.name, 'TypeError')
+  t.is(error.message, 'question is required')
+})

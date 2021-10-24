@@ -3,5 +3,7 @@ export default class Question {
     if (!question) {
       throw new TypeError ('question is required')
     }
+
+    
   }
 }
