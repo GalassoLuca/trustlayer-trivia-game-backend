@@ -11,5 +11,9 @@ export default class Question {
     if (!(correctAnswer >= 0 && correctAnswer < answers.length)) {
       throw new TypeError('invalid correctAnswer')
     }
+
+    this.question = question
+    this.answers = answers
+    this.correctAnswer = correctAnswer
   }
 }
