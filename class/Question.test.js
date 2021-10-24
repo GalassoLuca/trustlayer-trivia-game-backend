@@ -9,8 +9,8 @@ test('should throw if question is missing', t => {
 })
 
 test('should throw if answer are not exactly four', t => {
-  const error = t.throws(() => new Question())
+  const error = t.throws(() => new Question('quiz name', ['first', 'second']))
 
   t.is(error.name, 'TypeError')
-  t.is(error.message, 'question is required')
+  t.is(error.message, 'answer must be four')
 })
