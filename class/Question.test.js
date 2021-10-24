@@ -14,3 +14,17 @@ test('should throw if answer are not exactly four', t => {
   t.is(error.name, 'TypeError')
   t.is(error.message, 'answer must be four')
 })
+
+test('should throw the correct answer is missing', t => {
+  const error = t.throws(() => new Question('quiz name', ['first', 'second', 'third', 'fourth']))
+
+  t.is(error.name, 'TypeError')
+  t.is(error.message, 'invalid correctAnswer')
+})
+
+test('should throw the correct answer is invalid', t => {
+  const error = t.throws(() => new Question('quiz name', ['first', 'second', 'third', 'fourth'], 10))
+
+  t.is(error.name, 'TypeError')
+  t.is(error.message, 'invalid correctAnswer')
+})
