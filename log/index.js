@@ -1,6 +1,6 @@
-const pino = require('pino')
+import pino from 'pino'
 
-module.exports = function createLog (name, options = {}) {
+export default function createLog (name, options = {}) {
   if (!name) {
     throw new TypeError('name is required')
   }

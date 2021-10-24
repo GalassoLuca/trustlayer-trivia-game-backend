@@ -1,5 +1,5 @@
-const test = require('ava')
-const log = require('./index')
+import test from 'ava'
+import log from './index.js'
 
 test('throw if name is missing', t => {
   const error = t.throws(() => log())
