@@ -1,4 +1,4 @@
-import getQuizzes from './quizzes.get'
+import getQuizzes from './quiz.get.all'
 import getQuiz from './quiz.get'
 import putQuiz from './quiz.put'
 import deleteQuiz from './quiz.delete'

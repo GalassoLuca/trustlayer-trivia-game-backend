@@ -1,4 +1,3 @@
-import questionSchema from '../schema/question'
 import { createLog } from '../../log'
 
 const log = createLog('app:question')
