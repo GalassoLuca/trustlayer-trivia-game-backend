@@ -1,6 +1,6 @@
 import pino from 'pino'
 
-export default function createLog (name, options = {}) {
+export function createLog (name, options = {}) {
   if (!name) {
     throw new TypeError('name is required')
   }
