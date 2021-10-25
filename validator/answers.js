@@ -1,4 +1,4 @@
-export default function validate (answers) {
+export default function validate(answers) {
   if (!answers || answers.length !== 4) {
     throw new TypeError('answer must be four')
   }

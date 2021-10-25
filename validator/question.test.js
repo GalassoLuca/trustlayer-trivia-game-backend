@@ -7,4 +7,3 @@ test('throw if the question is missing', t => {
   t.is(error.name, 'TypeError')
   t.is(error.message, 'question is required')
 })
-

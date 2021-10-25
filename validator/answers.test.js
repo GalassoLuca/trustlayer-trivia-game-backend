@@ -9,7 +9,9 @@ test('throw if answer are not answer', t => {
 })
 
 test('throw if some answer are missing', t => {
-  const error = t.throws(() => validateAnswers([{ answer: 'first' }, { answer: null }]))
+  const answers = [{ answer: 'first' }, { answer: null }]
+
+  const error = t.throws(() => validateAnswers(answers))
 
   t.is(error.name, 'TypeError')
   t.is(error.message, 'answer must be four')
@@ -42,7 +44,6 @@ test('throw if there are multiple answer corrects', t => {
   t.is(error.name, 'TypeError')
   t.is(error.message, 'only one answer must be correct')
 })
-
 
 test('not throw in case there are no error the question', t => {
   const answer = [

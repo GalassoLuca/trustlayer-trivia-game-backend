@@ -1,7 +1,7 @@
-import validateQuestion from "./question"
-import validateAnswers from "./answers"
+import validateQuestion from './question'
+import validateAnswers from './answers'
 
-export default function validate (question, answers) {
+export default function validate(question, answers) {
   validateQuestion(question)
   validateAnswers(answers)
 }
