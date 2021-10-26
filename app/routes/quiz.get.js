@@ -1,6 +1,7 @@
+import { getQuiz } from '../../db'
 import { createLog } from '../../log'
 
-const log = createLog('app:question')
+const log = createLog('quiz:get')
 
 export default {
   method: 'GET',
@@ -8,9 +9,15 @@ export default {
   handler
 }
 
-function handler (request, reply) {
-  const { body } = request
-  log.debug('Processing', { body })
+function handler(request, reply) {
+  const { params } = request
+  log.debug('Processing %o', { params })
 
-  return 'TBD, return the selected quiz'
+  const quiz = getQuiz(params.id)
+
+  if (!quiz) {
+    return reply.code(404).type('text/plain').send('Quiz not found')
+  }
+
+  return quiz
 }

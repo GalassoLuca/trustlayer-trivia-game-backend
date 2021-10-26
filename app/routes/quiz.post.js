@@ -1,10 +1,11 @@
+import { addQuiz } from '../../db'
 import { createLog } from '../../log'
 import { quiz } from '../schema'
 
 const log = createLog('quiz:put')
 
 export default {
-  method: 'PUT',
+  method: 'POST',
   url: '/quiz',
   schema: {
     body: quiz
@@ -13,8 +14,11 @@ export default {
 }
 
 function handler(request, reply) {
-  const { body } = request
-  log.debug('Processing %o', body)
+  const { body: quiz } = request
+  log.debug('Processing %o', quiz)
+  log.debug('typeof %s', typeof quiz)
 
-  return 'TBD, replaces all current representations of the target resource with the request payload'
+  console.log('TBD, 201 (Created)')
+
+  return addQuiz(quiz)
 }

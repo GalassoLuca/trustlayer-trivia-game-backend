@@ -1,6 +1,5 @@
 import { createLog } from '../../log'
-
-const log = createLog('app:question')
+import { getQuizzes } from '../../db'
 
 export default {
   method: 'GET',
@@ -8,9 +7,6 @@ export default {
   handler
 }
 
-function handler (request, reply) {
-  const { body } = request
-  log.debug('Processing', { body })
-
-  return 'TBD, return all the existing quizzes'
+function handler(request, reply) {
+  return getQuizzes()
 }

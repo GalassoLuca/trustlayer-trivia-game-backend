@@ -9,7 +9,7 @@ test('throw if the question is missing', t => {
 })
 
 test('throw if the answers are missing', t => {
-  const error = t.throws(() => validateQuiz('question?'))
+  const error = t.throws(() => validateQuiz({ question: 'question?' }))
 
   t.is(error.name, 'TypeError')
   t.is(error.message, 'answer must be four')
