@@ -26,11 +26,15 @@ export function addQuiz(quiz) {
 }
 
 export function replaceQuiz(id, quiz) {
+  if (!quizzes[id]) {
+    throw new QuizNotFound()
+  }
+
   validateQuiz(quiz)
 
-  quiz[id] = quiz
+  quizzes[id] = quiz
 
-  return id
+  return quiz
 }
 
 export function deleteQuiz(id) {

@@ -17,13 +17,13 @@ test('GET /api/quiz/:id - return 404 when the selected quiz is missing', async t
 })
 
 test('GET /api/quiz/:id - return 200 and the selected quiz', async t => {
-  const quizCreationRes = await app.inject({
+  const createQuizRes = await app.inject({
     method: 'POST',
     url: '/api/quiz',
     payload: quiz
   })
 
-  t.is(quizCreationRes.statusCode, 200)
+  t.is(createQuizRes.statusCode, 200)
 
   const quizFromTheSystemRes = await app.inject({
     method: 'GET',

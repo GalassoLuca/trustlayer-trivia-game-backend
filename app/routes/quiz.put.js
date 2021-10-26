@@ -1,3 +1,4 @@
+import { replaceQuiz } from '../../db'
 import { createLog } from '../../log'
 import { quiz } from '../schema'
 
@@ -5,7 +6,7 @@ const log = createLog('quiz:put')
 
 export default {
   method: 'PUT',
-  url: '/quiz',
+  url: '/quiz/:id',
   schema: {
     body: quiz
   },
@@ -13,8 +14,8 @@ export default {
 }
 
 function handler(request, reply) {
-  const { body } = request
-  log.debug('Processing %o', body)
+  const { body: quiz, params } = request
+  log.debug('Processing %o', quiz)
 
-  return 'TBD, replaces all current representations of the target resource with the request payload'
+  return replaceQuiz(+params.id, quiz)
 }

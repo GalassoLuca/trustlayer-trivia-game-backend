@@ -13,13 +13,13 @@ test('GET /api/quiz - return 200 and empty array if there are no quizzes', async
 })
 
 test('GET /api/quiz - return 200 and all the quizzes', async t => {
-  const quizCreationRes = await app.inject({
+  const createQuizRes = await app.inject({
     method: 'POST',
     url: '/api/quiz',
     payload: quiz
   })
 
-  t.is(quizCreationRes.statusCode, 200)
+  t.is(createQuizRes.statusCode, 200)
 
   const allQuizzesRes = await app.inject({
     method: 'GET',
