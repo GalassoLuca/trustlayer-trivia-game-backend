@@ -16,7 +16,7 @@ function handler(request, reply) {
   const quiz = getQuiz(params.id)
 
   if (!quiz) {
-    return reply.code(404).type('text/plain').send('Quiz not found')
+    return reply.code(404).send({ error: 'Quiz not found' })
   }
 
   return quiz

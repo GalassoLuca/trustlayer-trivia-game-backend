@@ -1,0 +1,23 @@
+{
+  "name": "Trivia",
+  "questions": [
+    {
+      "question": "What is the company name?",
+      "answers": [
+        {
+          "answer": "TrustLayer",
+          "correct": true
+        },
+        {
+          "answer": "TruzzLayer"
+        },
+        {
+          "answer": "TrumfLayer"
+        },
+        {
+          "answer": "TrustLawyer"
+        }
+      ]
+    }
+  ]
+}

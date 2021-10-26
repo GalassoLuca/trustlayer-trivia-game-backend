@@ -1,5 +1,6 @@
 import test from 'ava'
 import validateAnswers from './answers'
+import quiz from '../../test/resource/quiz.json'
 
 test('throw if answer are not answer', t => {
   const error = t.throws(() => validateAnswers())
@@ -46,12 +47,7 @@ test('throw if there are multiple answer corrects', t => {
 })
 
 test('not throw in case there are no error the question', t => {
-  const answer = [
-    { answer: 'TrustLayer', correct: true },
-    { answer: 'TruzzLayer' },
-    { answer: 'TrumfLayer' },
-    { answer: 'TrustLawyer' }
-  ]
+  const answer = quiz.questions[0].answers
 
   t.falsy(validateAnswers(answer))
 })
