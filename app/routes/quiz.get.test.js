@@ -9,7 +9,11 @@ test('GET /api/quiz/:id - return 404 when the selected quiz is missing', async t
   })
 
   t.is(res.statusCode, 404)
-  t.deepEqual(res.json(), { error: 'Quiz not found' })
+  t.deepEqual(res.json(), {
+    error: 'Not Found',
+    message: 'Quiz not found',
+    statusCode: 404
+  })
 })
 
 test('GET /api/quiz/:id - return 200 and the selected quiz', async t => {

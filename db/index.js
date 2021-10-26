@@ -8,7 +8,13 @@ export function getQuizzes() {
 }
 
 export function getQuiz(id) {
-  return quizzes[id]
+  const quiz = quizzes[id]
+
+  if (!quiz) {
+    throw new QuizNotFound()
+  }
+
+  return quiz
 }
 
 export function addQuiz(quiz) {

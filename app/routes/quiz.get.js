@@ -13,11 +13,5 @@ function handler(request, reply) {
   const { params } = request
   log.debug('Processing %o', { params })
 
-  const quiz = getQuiz(params.id)
-
-  if (!quiz) {
-    return reply.code(404).send({ error: 'Quiz not found' })
-  }
-
-  return quiz
+  return getQuiz(params.id)
 }
