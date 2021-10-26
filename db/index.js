@@ -22,7 +22,7 @@ export function addQuiz(quiz) {
 
   quizzes.push(quiz)
 
-  return quizzes.length - 1
+  return quiz
 }
 
 export function replaceQuiz(id, quiz) {

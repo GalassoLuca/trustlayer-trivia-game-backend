@@ -23,7 +23,7 @@ test('GET /api/quiz/:id - return 200 and the selected quiz', async t => {
     payload: quiz
   })
 
-  t.deepEqual(quizCreationRes.json(), 0, 'error while creating the the quiz')
+  t.is(quizCreationRes.statusCode, 200)
 
   const quizFromTheSystemRes = await app.inject({
     method: 'GET',

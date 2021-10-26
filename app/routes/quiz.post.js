@@ -16,9 +16,6 @@ export default {
 function handler(request, reply) {
   const { body: quiz } = request
   log.debug('Processing %o', quiz)
-  log.debug('typeof %s', typeof quiz)
-
-  console.log('TBD, 201 (Created)')
 
   return addQuiz(quiz)
 }
