@@ -1,4 +1,5 @@
 import { validateQuiz } from './validator'
+import QuizNotFound from './validator/error/QuizNotFound'
 
 const quizzes = []
 
@@ -27,5 +28,9 @@ export function replaceQuiz(id, quiz) {
 }
 
 export function deleteQuiz(id) {
-  return quizzes.splice(id, 1)
+  if (!quizzes[id]) {
+    throw new QuizNotFound()
+  }
+
+  return quizzes.splice(id, 1)[0]
 }

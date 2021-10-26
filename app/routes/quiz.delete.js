@@ -1,6 +1,7 @@
 import { createLog } from '../../log'
+import { deleteQuiz } from '../../db'
 
-const log = createLog('app:question')
+const log = createLog('quiz:delete')
 
 export default {
   method: 'DELETE',
@@ -8,9 +9,9 @@ export default {
   handler
 }
 
-function handler (request, reply) {
-  const { body } = request
-  log.debug('Processing', { body })
+function handler(request, reply) {
+  const { params } = request
+  log.debug('Processing %o', { params })
 
-  return 'TBD, deletes the specified resource'
+  return deleteQuiz(params.id)
 }
