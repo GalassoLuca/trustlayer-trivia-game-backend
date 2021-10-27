@@ -1,6 +1,11 @@
 import test from 'ava'
 import app from '..'
 import quiz from '../../test/resource/quiz.json'
+import * as db from '../../db/db'
+
+test.beforeEach(async t => {
+  await db.Quizzes.deleteMany({})
+})
 
 test('GET /api/quiz - return 200 and empty array if there are no quizzes', async t => {
   const allQuizzesRes = await app.inject({
@@ -27,5 +32,9 @@ test('GET /api/quiz - return 200 and all the quizzes', async t => {
   })
 
   t.is(allQuizzesRes.statusCode, 200)
-  t.deepEqual(allQuizzesRes.json(), [quiz])
+  t.is(allQuizzesRes.json().length, 1)
+
+  const { _id, ...quizWithoutId } = allQuizzesRes.json()[0]
+  t.is(_id.length, 24)
+  t.deepEqual(quizWithoutId, quiz)
 })

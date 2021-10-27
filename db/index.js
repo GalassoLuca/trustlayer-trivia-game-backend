@@ -1,14 +1,13 @@
 import { validateQuiz } from './validator'
 import QuizNotFound from './validator/error/QuizNotFound'
+import * as db from './db'
 
-const quizzes = []
-
-export function getQuizzes() {
-  return quizzes
+export async function getQuizzes() {
+  return db.Quizzes.find().toArray()
 }
 
-export function getQuiz(id) {
-  const quiz = quizzes[id]
+export async function getQuiz(id) {
+  const quiz = await db.Quizzes.findOne({ _id: db.ObjectId(id) })
 
   if (!quiz) {
     throw new QuizNotFound()
@@ -17,30 +16,36 @@ export function getQuiz(id) {
   return quiz
 }
 
-export function addQuiz(quiz) {
+export async function addQuiz(quiz) {
   validateQuiz(quiz)
 
-  quizzes.push(quiz)
+  await db.Quizzes.insertOne(quiz)
 
   return quiz
 }
 
-export function replaceQuiz(id, quiz) {
-  if (!quizzes[id]) {
+export async function replaceQuiz(id, quiz) {
+  validateQuiz(quiz)
+
+  const oldQuiz = await db.Quizzes.findOne({ _id: db.ObjectId(id) })
+
+  if (!oldQuiz) {
     throw new QuizNotFound()
   }
 
-  validateQuiz(quiz)
-
-  quizzes[id] = quiz
+  await db.Quizzes.replaceOne({ _id: db.ObjectId(id) }, quiz)
 
   return quiz
 }
 
-export function deleteQuiz(id) {
-  if (!quizzes[id]) {
+export async function deleteQuiz(id) {
+  const quiz = await db.Quizzes.findOne({ _id: db.ObjectId(id) })
+
+  if (!quiz) {
     throw new QuizNotFound()
   }
 
-  return quizzes.splice(id, 1)[0]
+  await db.Quizzes.deleteOne({ _id: db.ObjectId(id) })
+
+  return quiz
 }

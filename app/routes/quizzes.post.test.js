@@ -10,5 +10,8 @@ test('POST /api/quiz - return 201 and the created quiz', async t => {
   })
 
   t.is(createQuizRes.statusCode, 200)
-  t.deepEqual(createQuizRes.json(), quiz)
+
+  const { _id, ...quizWithoutId } = createQuizRes.json()
+  t.is(_id.length, 24)
+  t.deepEqual(quizWithoutId, quiz)
 })
