@@ -1,4 +1,3 @@
-import { createLog } from '../../log'
 import { getQuizzes } from '../../db'
 
 export default {

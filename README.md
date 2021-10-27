@@ -1,5 +1,8 @@
 # TrustLayer trivia game backend kata
 
+This is the backend implementation of trivia game.
+
+This module has been developed with the ESM Module Loader (Node.js experimental feature)
 ## Start the server
 
 ```bash

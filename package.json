@@ -5,8 +5,9 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "node --es-module-specifier-resolution=node ./bin/server.js",
-    "test": "node --es-module-specifier-resolution=node ./node_modules/ava/cli.js --verbose"
+    "start": "node --experimental-modules --es-module-specifier-resolution=node ./bin/server.js",
+    "start:debug": "node --inspect --experimental-modules --es-module-specifier-resolution=node ./bin/server.js",
+    "test": "node --experimental-modules --es-module-specifier-resolution=node ./node_modules/ava/cli.js --verbose"
   },
   "author": "",
   "license": "ISC",

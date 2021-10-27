@@ -17,5 +17,5 @@ function handler(request, reply) {
   const { body: quiz, params } = request
   log.debug('Processing %o', quiz)
 
-  return replaceQuiz(+params.id, quiz)
+  return replaceQuiz(params.id, quiz)
 }
