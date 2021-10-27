@@ -1,5 +1,5 @@
 import test from 'ava'
-import { createLog } from './index.js'
+import { createLog } from './index'
 
 test('throw if name is missing', t => {
   const error = t.throws(() => createLog())

@@ -1,5 +1,5 @@
 import test from 'ava'
-import app from '../app/index.js'
+import app from '../app'
 
 test('GET /api - return a 200 OK', async t => {
   const res = await app.inject({

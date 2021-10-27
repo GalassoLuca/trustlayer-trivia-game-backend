@@ -1,5 +1,5 @@
 import test from 'ava'
-import validateQuestion from './question.js'
+import validateQuestion from './question'
 
 test('throw if the question is missing', t => {
   const error = t.throws(() => validateQuestion())

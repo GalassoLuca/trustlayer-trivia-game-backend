@@ -2,7 +2,19 @@ import test from 'ava'
 import app from '..'
 import quiz from '../../test/resource/quiz.json'
 
-test.todo('DELETE /api/quiz/:id - return 400 when the given id is incorrect')
+test('DELETE /api/quiz/:id - return 400 when the given id is incorrect', async t => {
+  const res = await app.inject({
+    method: 'DELETE',
+    url: '/api/quiz/0'
+  })
+
+  t.is(res.statusCode, 400)
+  t.deepEqual(res.json(), {
+    statusCode: 400,
+    error: 'Bad Request',
+    message: 'id must be a string of 24 hex characters'
+  })
+})
 
 test('DELETE /api/quiz/:id - return 404 when deleting unexisting quiz', async t => {
   const res = await app.inject({

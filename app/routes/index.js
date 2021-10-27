@@ -6,7 +6,6 @@ import deleteQuiz from './quiz.delete'
 
 export async function routes(fastify, options) {
   fastify.route(getQuizzes)
-
   fastify.route(getQuiz)
   fastify.route(postQuizzes)
   fastify.route(putQuiz)
