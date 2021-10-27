@@ -1,7 +1,5 @@
-import quizRoutes from './quiz'
+import quizRoutes from './quiz.routes'
 
 export async function routes(fastify, options) {
-  quizRoutes.forEach(route => {
-    fastify.route(route)
-  })
+  quizRoutes(fastify, options)
 }
