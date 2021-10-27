@@ -7,7 +7,9 @@
   "scripts": {
     "start": "node --experimental-modules --es-module-specifier-resolution=node ./bin/server.js",
     "start:debug": "node --inspect --experimental-modules --es-module-specifier-resolution=node ./bin/server.js",
-    "test": "node --experimental-modules --es-module-specifier-resolution=node ./node_modules/ava/cli.js --verbose --serial"
+    "test": "npm run test:ut && npm run test:it",
+    "test:ut": "node --experimental-modules --es-module-specifier-resolution=node ./node_modules/ava/cli.js --verbose **.test.js",
+    "test:it": "node --experimental-modules --es-module-specifier-resolution=node ./node_modules/ava/cli.js --verbose --serial **.test.it.js"
   },
   "author": "",
   "license": "ISC",
