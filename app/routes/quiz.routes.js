@@ -14,7 +14,8 @@ export default async function (fastify, opts) {
     schema: {
       body: quiz
     },
-    handler: ({ body: quiz }, reply) => db.addQuiz(quiz)
+    handler: async ({ body: quiz }, reply) =>
+      reply.status(201).send(await db.addQuiz(quiz))
   })
 
   fastify.route({

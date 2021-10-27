@@ -26,7 +26,7 @@ test('API db data maniputation', async t => {
     payload: quiz
   })
 
-  // t.is(firstQuizRes.statusCode, 201, M2)
+  t.is(firstQuizRes.statusCode, 201, M2)
 
   const { _id, ...firstQuiz } = firstQuizRes.json()
   t.is(_id.length, 24, M2)
