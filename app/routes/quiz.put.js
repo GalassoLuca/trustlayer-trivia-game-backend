@@ -2,7 +2,7 @@ import { replaceQuiz } from '../../db'
 import { createLog } from '../../log'
 import { quiz } from '../schema'
 
-const log = createLog('quiz:put')
+const log = createLog('PUT /quiz/:id')
 
 export default {
   method: 'PUT',

@@ -2,7 +2,7 @@ import { addQuiz } from '../../db'
 import { createLog } from '../../log'
 import { quiz } from '../schema'
 
-const log = createLog('quiz:put')
+const log = createLog('POST /quiz')
 
 export default {
   method: 'POST',

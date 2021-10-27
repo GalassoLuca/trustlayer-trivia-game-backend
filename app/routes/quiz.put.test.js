@@ -2,7 +2,7 @@ import test from 'ava'
 import app from '..'
 import quiz from '../../test/resource/quiz.json'
 
-test('GET /api/quiz/:id - return 200 and the updated quiz', async t => {
+test('PUT /api/quiz/:id - return 200 and the updated quiz', async t => {
   const createQuizRes = await app.inject({
     method: 'POST',
     url: '/api/quiz',

@@ -1,7 +1,7 @@
 import { getQuiz } from '../../db'
 import { createLog } from '../../log'
 
-const log = createLog('quiz:get')
+const log = createLog('GET /quiz/:id')
 
 export default {
   method: 'GET',

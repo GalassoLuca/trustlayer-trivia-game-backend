@@ -1,7 +1,7 @@
 import { createLog } from '../../log'
 import { deleteQuiz } from '../../db'
 
-const log = createLog('quiz:delete')
+const log = createLog('DELETE /quiz/:id')
 
 export default {
   method: 'DELETE',
