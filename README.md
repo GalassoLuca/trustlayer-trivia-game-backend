@@ -20,7 +20,7 @@ curl http://127.0.0.1:4040/api/auth/signup \
   -d '{ "username": "user", "password": "pwd" }'
 ```
 
-### Signup
+### Signin
 
 ```bash
 curl http://127.0.0.1:4040/api/auth/signin \
