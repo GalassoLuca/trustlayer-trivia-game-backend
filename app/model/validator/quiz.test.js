@@ -1,6 +1,6 @@
 import test from 'ava'
 import validateQuiz from './quiz'
-import quiz from '../../test/resource/quiz.json'
+import quiz from '../../../test/resource/quiz.json'
 
 test('not throw for a valid quiz', t => {
   const result = validateQuiz(quiz)

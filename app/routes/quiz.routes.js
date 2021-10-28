@@ -1,4 +1,4 @@
-import * as db from '../../db'
+import * as db from '../model'
 import { quiz } from '../schema'
 
 export default async function (fastify, opts) {

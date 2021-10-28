@@ -1,7 +1,7 @@
 import test from 'ava'
 import app from '../app'
 import quiz from './resource/quiz.json'
-import * as db from '../db/db'
+import * as db from '../app/model/db'
 
 test.beforeEach(async () => {
   await db.Quizzes.deleteMany({})

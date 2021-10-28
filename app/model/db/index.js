@@ -1,15 +1,5 @@
 import { MongoClient } from 'mongodb'
-import { createLog } from '../log'
-
-const log = createLog('db')
-
-const setting = {
-  HOST: 'localhost',
-  PORT: 27017,
-  DB: `trivia-game-${process.env.NODE_ENV || 'development'}`
-}
-
-log.info('Selected db: %s', setting.DB)
+import setting from '../../settings/db.config'
 
 const client = new MongoClient(`mongodb://${setting.HOST}:${setting.PORT}`)
 await client.connect()
