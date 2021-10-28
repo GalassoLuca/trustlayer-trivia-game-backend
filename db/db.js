@@ -3,14 +3,17 @@ import { createLog } from '../log'
 
 const log = createLog('db')
 
-const url = 'mongodb://localhost:27017'
-const client = new MongoClient(url)
+const setting = {
+  HOST: 'localhost',
+  PORT: 27017,
+  DB: `trivia-game-${process.env.NODE_ENV || 'development'}`
+}
 
+log.info('Selected db: %s', setting.DB)
+
+const client = new MongoClient(`mongodb://${setting.HOST}:${setting.PORT}`)
 await client.connect()
-
-const selectedDB = `trivia-game-${process.env.NODE_ENV || 'development'}`
-log.info('Selected db: %s', selectedDB)
-const db = client.db(selectedDB)
+const db = client.db(setting.DB)
 
 export { ObjectId } from 'mongodb'
 export const Quizzes = db.collection('quizzes')
