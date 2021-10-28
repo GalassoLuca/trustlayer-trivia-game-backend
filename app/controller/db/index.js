@@ -1,9 +1,9 @@
 import { MongoClient } from 'mongodb'
-import setting from '../../settings/db.config'
+import config from '../../config/db.config'
 
-const client = new MongoClient(`mongodb://${setting.HOST}:${setting.PORT}`)
+const client = new MongoClient(`mongodb://${config.HOST}:${config.PORT}`)
 await client.connect()
-const db = client.db(setting.DB)
+const db = client.db(config.DB)
 
 export { ObjectId } from 'mongodb'
 export const Quizzes = db.collection('quizzes')

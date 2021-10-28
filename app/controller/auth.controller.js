@@ -4,7 +4,7 @@ import UsernameDuplicate from '../error/UsernameDuplicate'
 import InvalidPassword from '../error/InvalidPassword'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
-import config from '../settings/auth.config'
+import config from '../config/auth.config'
 
 export async function signup({ body: { username, password } }, reply) {
   if (await db.Users.findOne({ username })) {
