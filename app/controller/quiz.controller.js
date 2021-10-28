@@ -1,11 +1,17 @@
 import * as db from './db'
 import QuizNotFound from '../error/QuizNotFound'
 
-export async function getQuizzes() {
+export async function getQuizzes(request, reply) {
   return db.Quizzes.find().toArray()
 }
 
-export async function getQuiz(id) {
+export async function addQuiz({ body: quiz }, reply) {
+  await db.Quizzes.insertOne(quiz)
+
+  reply.status(201).send(quiz)
+}
+
+export async function getQuiz({ params: { id } }) {
   const quiz = await db.Quizzes.findOne({ _id: db.ObjectId(id) })
 
   if (!quiz) {
@@ -15,13 +21,7 @@ export async function getQuiz(id) {
   return quiz
 }
 
-export async function addQuiz(quiz) {
-  await db.Quizzes.insertOne(quiz)
-
-  return quiz
-}
-
-export async function replaceQuiz(id, quiz) {
+export async function replaceQuiz({ params: { id }, body: quiz }) {
   const oldQuiz = await db.Quizzes.findOne({ _id: db.ObjectId(id) })
 
   if (!oldQuiz) {
@@ -33,7 +33,7 @@ export async function replaceQuiz(id, quiz) {
   return quiz
 }
 
-export async function deleteQuiz(id) {
+export async function deleteQuiz({ params: { id } }) {
   const quiz = await db.Quizzes.findOne({ _id: db.ObjectId(id) })
 
   if (!quiz) {

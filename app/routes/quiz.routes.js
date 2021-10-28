@@ -1,4 +1,4 @@
-import * as db from '../model'
+import * as quizController from '../controller/quiz'
 import quizSchema from '../schema/quiz'
 import validateQuiz from '../middleware/validate-quiz'
 import validateId from '../middleware/validate-id'
@@ -7,7 +7,7 @@ export default function (fastify, opts) {
   fastify.route({
     method: 'GET',
     url: '/quiz',
-    handler: (request, reply) => db.getQuizzes()
+    handler: quizController.getQuizzes
   })
 
   fastify.route({
@@ -17,15 +17,14 @@ export default function (fastify, opts) {
       body: quizSchema
     },
     preHandler: validateQuiz,
-    handler: async ({ body: quiz }, reply) =>
-      reply.status(201).send(await db.addQuiz(quiz))
+    handler: quizController.addQuiz
   })
 
   fastify.route({
     method: 'GET',
     url: '/quiz/:id',
     preHandler: validateId,
-    handler: ({ params }, reply) => db.getQuiz(params.id)
+    handler: quizController.getQuiz
   })
 
   fastify.route({
@@ -35,13 +34,13 @@ export default function (fastify, opts) {
       body: quizSchema
     },
     preHandler: [validateId, validateQuiz],
-    handler: ({ params, body: quiz }, reply) => db.replaceQuiz(params.id, quiz)
+    handler: quizController.replaceQuiz
   })
 
   fastify.route({
     method: 'DELETE',
     url: '/quiz/:id',
     preHandler: validateId,
-    handler: ({ params }, reply) => db.deleteQuiz(params.id)
+    handler: quizController.deleteQuiz
   })
 }

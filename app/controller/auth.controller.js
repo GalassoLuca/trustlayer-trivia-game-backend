@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 import config from '../settings/auth.config'
 
-export async function signup({ username, password }) {
+export async function signup({ body: { username, password } }, reply) {
   if (await db.Users.findOne({ username })) {
     throw new UsernameDuplicate()
   }
@@ -19,7 +19,7 @@ export async function signup({ username, password }) {
   return { message: 'User registered successfully!' }
 }
 
-export async function signin({ username, password }) {
+export async function signin({ body: { username, password } }, reply) {
   const user = await db.Users.findOne({ username })
 
   if (!user) {

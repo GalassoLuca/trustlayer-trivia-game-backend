@@ -1,4 +1,4 @@
-import * as db from '../model'
+import * as authController from '../controller/auth'
 import userSchema from '../schema/user'
 
 export default function (fastify, opts) {
@@ -6,13 +6,13 @@ export default function (fastify, opts) {
     method: 'POST',
     url: '/auth/signup',
     schema: { body: userSchema },
-    handler: async ({ body }, reply) => db.signup(body)
+    handler: authController.signup
   })
 
   fastify.route({
     method: 'POST',
     url: '/auth/signin',
     schema: { body: userSchema },
-    handler: async ({ body }, reply) => db.signin(body)
+    handler: authController.signin
   })
 }
