@@ -1,4 +1,4 @@
-import * as quizController from '../controller/quiz'
+import * as quizController from '../controller/quiz.controller'
 import quizSchema from '../schema/quiz'
 import validateQuiz from '../middleware/validate-quiz'
 import validateId from '../middleware/validate-id'

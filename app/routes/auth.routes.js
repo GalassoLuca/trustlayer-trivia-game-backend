@@ -1,4 +1,4 @@
-import * as authController from '../controller/auth'
+import * as authController from '../controller/auth.controller'
 import userSchema from '../schema/user'
 
 export default function (fastify, opts) {
