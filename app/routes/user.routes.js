@@ -1,5 +1,5 @@
 import * as userController from '../controller/user.controller'
-import userSchema from '../schema/user'
+import userSchema from '../schema/user.username'
 import verifyToken from '../middleware/verify-token'
 
 export default function (fastify, opts) {

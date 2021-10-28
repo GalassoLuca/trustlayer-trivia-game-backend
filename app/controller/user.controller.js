@@ -1,16 +1,14 @@
 import * as db from './db'
-import UserNotFound from '../error/UserNotFound'
+import Unauthorized from '../error/Unauthorized'
 
 export async function deleteUser(request, reply) {
-  const username = request.body
+  const { username } = request.body
 
-  const user = await db.Users.findOne({ username })
-
-  if (!user) {
-    throw new UserNotFound()
+  if (username !== request.user.username) {
+    throw new Unauthorized()
   }
 
-  await db.Users.deleteOne({ _id: user._id })
+  await db.Users.deleteOne({ _id: request.user._id })
 
   return { message: 'User deleted' }
 }

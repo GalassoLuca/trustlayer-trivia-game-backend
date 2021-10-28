@@ -7,7 +7,7 @@ test.beforeEach(async () => {
   await db.Users.deleteMany({})
 })
 
-test('/api/user db data maniputation', async t => {
+test('DELETE /api/user - return 200 when deleting the user', async t => {
   const userCreationRes = await app.inject({
     method: 'POST',
     url: '/api/auth/signup',
@@ -33,10 +33,52 @@ test('/api/user db data maniputation', async t => {
     }
   })
 
-  // t.is(userNotFoundRes.statusCode, 404)
+  t.is(userNotFoundRes.statusCode, 200)
   t.deepEqual(userNotFoundRes.json(), {
-    error: 'Not Found',
-    message: 'User not found',
-    statusCode: 404
+    message: 'User deleted'
+  })
+})
+
+test('DELETE /api/user - return 401 if deleting another user', async t => {
+  let userCreationRes = await app.inject({
+    method: 'POST',
+    url: '/api/auth/signup',
+    payload: user
+  })
+
+  t.is(userCreationRes.statusCode, 200)
+
+  const user2 = { ...user, username: user.username + '2' }
+
+  userCreationRes = await app.inject({
+    method: 'POST',
+    url: '/api/auth/signup',
+    payload: user2
+  })
+
+  t.is(userCreationRes.statusCode, 200)
+
+  const userSigninRes = await app.inject({
+    method: 'POST',
+    url: '/api/auth/signin',
+    payload: user
+  })
+
+  t.is(userSigninRes.statusCode, 200)
+
+  const unauthorizedRes = await app.inject({
+    method: 'DELETE',
+    url: '/api/user',
+    payload: user2,
+    headers: {
+      'x-access-token': userSigninRes.json().accessToken
+    }
+  })
+
+  t.is(unauthorizedRes.statusCode, 401)
+  t.deepEqual(unauthorizedRes.json(), {
+    error: 'Unauthorized',
+    message: 'Unauthorized',
+    statusCode: 401
   })
 })
