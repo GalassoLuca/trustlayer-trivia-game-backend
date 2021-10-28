@@ -1,5 +1,5 @@
 import * as db from '../model'
-import { quiz } from '../schema'
+import quizSchema from '../schema/quiz'
 import validateQuiz from '../middleware/validate-quiz'
 import validateId from '../middleware/validate-id'
 
@@ -14,7 +14,7 @@ export default async function (fastify, opts) {
     method: 'POST',
     url: '/quiz',
     schema: {
-      body: quiz
+      body: quizSchema
     },
     preHandler: validateQuiz,
     handler: async ({ body: quiz }, reply) =>
@@ -32,7 +32,7 @@ export default async function (fastify, opts) {
     method: 'PUT',
     url: '/quiz/:id',
     schema: {
-      body: quiz
+      body: quizSchema
     },
     preHandler: [validateId, validateQuiz],
     handler: ({ params, body: quiz }, reply) => db.replaceQuiz(params.id, quiz)

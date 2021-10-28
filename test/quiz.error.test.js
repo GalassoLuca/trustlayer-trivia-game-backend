@@ -1,5 +1,5 @@
 import test from 'ava'
-import app from '../../app'
+import app from '../app'
 
 test('GET /api/quiz/:id - return 400 when the given id is incorrect', async t => {
   const res = await app.inject({

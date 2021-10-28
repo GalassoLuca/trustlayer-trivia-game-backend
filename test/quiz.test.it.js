@@ -7,7 +7,7 @@ test.beforeEach(async () => {
   await db.Quizzes.deleteMany({})
 })
 
-test('API db data maniputation', async t => {
+test('/api/quiz db data maniputation', async t => {
   const M1 = 'GET /api/quiz - return 200 and no quizzes (starting point)'
 
   let allQuizzesRes = await app.inject({
