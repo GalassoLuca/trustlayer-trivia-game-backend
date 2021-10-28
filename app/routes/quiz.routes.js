@@ -3,7 +3,7 @@ import quizSchema from '../schema/quiz'
 import validateQuiz from '../middleware/validate-quiz'
 import validateId from '../middleware/validate-id'
 
-export default async function (fastify, opts) {
+export default function (fastify, opts) {
   fastify.route({
     method: 'GET',
     url: '/quiz',

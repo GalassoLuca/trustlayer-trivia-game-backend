@@ -7,3 +7,4 @@ const db = client.db(setting.DB)
 
 export { ObjectId } from 'mongodb'
 export const Quizzes = db.collection('quizzes')
+export const Users = db.collection('users')
