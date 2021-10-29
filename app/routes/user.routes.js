@@ -10,4 +10,12 @@ export default function (fastify, opts) {
     preValidation: verifyToken,
     handler: userController.deleteUser
   })
+
+  fastify.route({
+    method: 'PUT',
+    url: '/user',
+    schema: { body: userSchema },
+    preValidation: verifyToken,
+    handler: userController.updateUser
+  })
 }
