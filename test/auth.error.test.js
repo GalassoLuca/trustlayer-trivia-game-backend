@@ -1,6 +1,6 @@
 import test from 'ava'
 import app from '../app'
-import user from './resource/user.json'
+import userTest1 from './resource/user-test-1.json'
 import * as db from '../app/controller/db'
 
 test.beforeEach(async () => {
@@ -11,7 +11,7 @@ test('POST /api/auth/signin return 404 user not found when user is missing', asy
   const userNotFoundRes = await app.inject({
     method: 'POST',
     url: '/api/auth/signin',
-    payload: user
+    payload: userTest1
   })
 
   t.is(userNotFoundRes.statusCode, 404)

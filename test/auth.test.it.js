@@ -1,6 +1,6 @@
 import test from 'ava'
 import app from '../app'
-import user from './resource/user.json'
+import userTest1 from './resource/user-test-1.json'
 import * as db from '../app/controller/db'
 
 test.beforeEach(async () => {
@@ -13,7 +13,7 @@ test('/api/auth db data maniputation', async t => {
   const userCreationRes = await app.inject({
     method: 'POST',
     url: '/api/auth/signup',
-    payload: user
+    payload: userTest1
   })
 
   t.is(userCreationRes.statusCode, 200, T1)
@@ -28,7 +28,7 @@ test('/api/auth db data maniputation', async t => {
   const userDuplicateRes = await app.inject({
     method: 'POST',
     url: '/api/auth/signup',
-    payload: user
+    payload: userTest1
   })
 
   t.is(userDuplicateRes.statusCode, 400, T2)
@@ -47,7 +47,7 @@ test('/api/auth db data maniputation', async t => {
   const loginWrongPswRes = await app.inject({
     method: 'POST',
     url: '/api/auth/signin',
-    payload: { ...user, password: 'wrong' }
+    payload: { ...userTest1, password: 'wrong' }
   })
 
   t.is(loginWrongPswRes.statusCode, 401, T3)
@@ -66,10 +66,10 @@ test('/api/auth db data maniputation', async t => {
   const loginRes = await app.inject({
     method: 'POST',
     url: '/api/auth/signin',
-    payload: user
+    payload: userTest1
   })
 
   t.is(loginRes.statusCode, 200, T4)
   t.is(typeof loginRes.json().accessToken, 'string')
-  t.is(loginRes.json().username, user.username)
+  t.is(loginRes.json().username, userTest1.username)
 })
