@@ -16,6 +16,10 @@ export default async function verifyToken(request, reply, next) {
   try {
     decoded = jwt.verify(token, authSettings.secret)
   } catch (err) {
+    if (err.name === 'TokenExpiredError') {
+      throw new Unauthorized('Token expired')
+    }
+
     throw new Unauthorized()
   }
 
