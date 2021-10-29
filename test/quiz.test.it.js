@@ -2,6 +2,15 @@ import test from 'ava'
 import app from '../app'
 import quiz from './resource/quiz.json'
 import * as db from '../app/controller/db'
+import userTest1 from './resource/user-test-1.json'
+import { signupUser, signinUser } from './utils/user.utils'
+
+test.before(async t => {
+  await db.Users.deleteMany({})
+  await signupUser(app, userTest1)
+
+  t.context.userTest1 = (await signinUser(app, userTest1)).json()
+})
 
 test.beforeEach(async () => {
   await db.Quizzes.deleteMany({})
@@ -12,7 +21,10 @@ test('/api/quiz db data maniputation', async t => {
 
   let allQuizzesRes = await app.inject({
     method: 'GET',
-    url: '/api/quiz'
+    url: '/api/quiz',
+    headers: {
+      'x-access-token': t.context.userTest1.accessToken
+    }
   })
 
   t.is(allQuizzesRes.statusCode, 200, T1)
@@ -23,7 +35,10 @@ test('/api/quiz db data maniputation', async t => {
   const firstQuizRes = await app.inject({
     method: 'POST',
     url: '/api/quiz',
-    payload: quiz
+    payload: quiz,
+    headers: {
+      'x-access-token': t.context.userTest1.accessToken
+    }
   })
 
   t.is(firstQuizRes.statusCode, 201, T2)
@@ -40,6 +55,9 @@ test('/api/quiz db data maniputation', async t => {
     payload: {
       ...quiz,
       name: 'new name'
+    },
+    headers: {
+      'x-access-token': t.context.userTest1.accessToken
     }
   })
 
@@ -50,7 +68,10 @@ test('/api/quiz db data maniputation', async t => {
 
   allQuizzesRes = await app.inject({
     method: 'GET',
-    url: '/api/quiz'
+    url: '/api/quiz',
+    headers: {
+      'x-access-token': t.context.userTest1.accessToken
+    }
   })
 
   t.is(allQuizzesRes.statusCode, 200, T4)
@@ -60,7 +81,10 @@ test('/api/quiz db data maniputation', async t => {
 
   const quizFromTheSystemRes = await app.inject({
     method: 'DELETE',
-    url: `/api/quiz/${_id}`
+    url: `/api/quiz/${_id}`,
+    headers: {
+      'x-access-token': t.context.userTest1.accessToken
+    }
   })
 
   t.is(quizFromTheSystemRes.statusCode, 200, T5)
@@ -73,7 +97,10 @@ test('/api/quiz db data maniputation', async t => {
 
   allQuizzesRes = await app.inject({
     method: 'GET',
-    url: '/api/quiz'
+    url: '/api/quiz',
+    headers: {
+      'x-access-token': t.context.userTest1.accessToken
+    }
   })
 
   t.is(allQuizzesRes.statusCode, 200, T6)

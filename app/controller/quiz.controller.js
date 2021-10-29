@@ -5,7 +5,7 @@ export async function getQuizzes(request, reply) {
   return db.Quizzes.find().toArray()
 }
 
-export async function addQuiz({ body: quiz }, reply) {
+export async function addQuiz({ body: quiz, user }, reply) {
   await db.Quizzes.insertOne(quiz)
 
   reply.status(201).send(quiz)
