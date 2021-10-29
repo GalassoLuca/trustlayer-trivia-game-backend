@@ -3,7 +3,7 @@ import UserNotFound from '../error/UserNotFound'
 import UsernameDuplicate from '../error/UsernameDuplicate'
 import InvalidPassword from '../error/InvalidPassword'
 import jwt from 'jsonwebtoken'
-import bcrypt from 'bcryptjs'
+import { generateHash, compareHash } from './util/password'
 import config from '../config/auth.config'
 
 export async function signup({ body: { username, password } }, reply) {
@@ -13,7 +13,7 @@ export async function signup({ body: { username, password } }, reply) {
 
   await db.Users.insertOne({
     username,
-    password: bcrypt.hashSync(password, 8)
+    password: generateHash(password)
   })
 
   return { message: 'User registered successfully!' }
@@ -26,9 +26,7 @@ export async function signin({ body: { username, password } }, reply) {
     throw new UserNotFound()
   }
 
-  const pwdIsValid = bcrypt.compareSync(password, user.password)
-
-  if (!pwdIsValid) {
+  if (!compareHash(password, user.password)) {
     throw new InvalidPassword()
   }
 
