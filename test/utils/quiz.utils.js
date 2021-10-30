@@ -13,5 +13,5 @@ export async function createQuiz(app, user, quiz) {
     throw new Error(`Unexpected statusCode (${statusCode} found)`)
   }
 
-  return quizCreationRes
+  return quizCreationRes.json()
 }

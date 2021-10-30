@@ -14,8 +14,8 @@ test.before(async t => {
   await signupUser(app, userTest1)
   await signupUser(app, userTest2)
 
-  t.context.userTest1 = (await signinUser(app, userTest1)).json()
-  t.context.userTest2 = (await signinUser(app, userTest2)).json()
+  t.context.userTest1 = await signinUser(app, userTest1)
+  t.context.userTest2 = await signinUser(app, userTest2)
 })
 
 test('GET /api/quiz/:id - return 400 when the given id is incorrect', async t => {
@@ -91,7 +91,7 @@ test('GET /api/quiz/:id - return 404 when the quiz is not linked to the logged u
 
   const quizNotFoundRes = await app.inject({
     method: 'GET',
-    url: `/api/quiz/${quizRes.json()._id}`,
+    url: `/api/quiz/${quizRes._id}`,
     headers: {
       'x-access-token': t.context.userTest2.accessToken
     }
@@ -110,7 +110,7 @@ test('PUT /api/quiz/:id - return 404 when the quiz is not linked to the logged u
 
   const quizNotFoundRes = await app.inject({
     method: 'PUT',
-    url: `/api/quiz/${quizRes.json()._id}`,
+    url: `/api/quiz/${quizRes._id}`,
     headers: {
       'x-access-token': t.context.userTest2.accessToken
     },
@@ -130,7 +130,7 @@ test('DELETE /api/quiz/:id - return 404 when the quiz is not linked to the logge
 
   const quizNotFoundRes = await app.inject({
     method: 'DELETE',
-    url: `/api/quiz/${quizRes.json()._id}`,
+    url: `/api/quiz/${quizRes._id}`,
     headers: {
       'x-access-token': t.context.userTest2.accessToken
     }

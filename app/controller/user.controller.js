@@ -1,6 +1,6 @@
 import * as db from './db'
 import Unauthorized from '../error/Unauthorized'
-import { generateHash } from './util/password'
+import { generateHash } from './utils/password'
 
 export async function deleteUser(request, reply) {
   const { username } = request.body

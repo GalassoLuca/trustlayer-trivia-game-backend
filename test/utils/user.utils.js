@@ -10,7 +10,7 @@ export async function signupUser(app, user) {
     throw new Error(`Unexpected statusCode (${statusCode} found)`)
   }
 
-  return userSignupRes
+  return userSignupRes.json()
 }
 
 export async function signinUser(app, user) {
@@ -25,5 +25,5 @@ export async function signinUser(app, user) {
     throw new Error(`Unexpected statusCode (${statusCode} found)`)
   }
 
-  return userSigninRes
+  return userSigninRes.json()
 }

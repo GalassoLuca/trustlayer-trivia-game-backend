@@ -3,7 +3,7 @@ import UserNotFound from '../error/UserNotFound'
 import UsernameDuplicate from '../error/UsernameDuplicate'
 import InvalidPassword from '../error/InvalidPassword'
 import jwt from 'jsonwebtoken'
-import { generateHash, compareHash } from './util/password'
+import { generateHash, compareHash } from './utils/password'
 import config from '../config/auth.config'
 
 export async function signup({ body: { username, password } }, reply) {

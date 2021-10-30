@@ -20,7 +20,7 @@ test('DELETE /api/user - return 200 when deleting the user', async t => {
     url: '/api/user',
     payload: userTest1,
     headers: {
-      'x-access-token': userTest1SigninRes.json().accessToken
+      'x-access-token': userTest1SigninRes.accessToken
     }
   })
 
@@ -41,7 +41,7 @@ test('DELETE /api/user - return 401 if deleting another user', async t => {
     url: '/api/user',
     payload: userTest2,
     headers: {
-      'x-access-token': userTest1SigninRes.json().accessToken
+      'x-access-token': userTest1SigninRes.accessToken
     }
   })
 
@@ -64,7 +64,7 @@ test('PUT /api/user - return 401 if updating another user', async t => {
     url: '/api/user',
     payload: userTest2,
     headers: {
-      'x-access-token': userTest1SigninRes.json().accessToken
+      'x-access-token': userTest1SigninRes.accessToken
     }
   })
 
@@ -90,7 +90,7 @@ test('PUT /api/user - return 200 and modify the user with the new password', asy
     url: '/api/user',
     payload: userTest1NewPwd,
     headers: {
-      'x-access-token': userTest1SigninRes.json().accessToken
+      'x-access-token': userTest1SigninRes.accessToken
     }
   })
 
@@ -99,5 +99,5 @@ test('PUT /api/user - return 200 and modify the user with the new password', asy
     message: 'User updated'
   })
 
-  userTest1SigninRes = await signinUser(app, userTest1NewPwd)
+  await signinUser(app, userTest1NewPwd)
 })

@@ -14,8 +14,8 @@ test.before(async t => {
   await signupUser(app, userTest1)
   await signupUser(app, userTest2)
 
-  t.context.userTest1 = (await signinUser(app, userTest1)).json()
-  t.context.userTest2 = (await signinUser(app, userTest2)).json()
+  t.context.userTest1 = await signinUser(app, userTest1)
+  t.context.userTest2 = await signinUser(app, userTest2)
 })
 
 test.beforeEach(async () => {
