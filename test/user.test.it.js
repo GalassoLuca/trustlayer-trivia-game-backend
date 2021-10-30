@@ -1,8 +1,10 @@
 import test from 'ava'
 import app from '../app'
+import * as db from '../app/controller/db'
+
 import userTest1 from './resource/user-test-1.json'
 import userTest2 from './resource/user-test-2.json'
-import * as db from '../app/controller/db'
+
 import { signupUser, signinUser } from './utils/user.utils'
 
 test.beforeEach(async () => {

@@ -1,7 +1,8 @@
 import test from 'ava'
 import app from '../app'
-import userTest1 from './resource/user-test-1.json'
 import * as db from '../app/controller/db'
+
+import userTest1 from './resource/user-test-1.json'
 
 test.beforeEach(async () => {
   await db.Users.deleteMany({})

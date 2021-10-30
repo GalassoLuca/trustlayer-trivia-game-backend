@@ -1,22 +1,28 @@
 import test from 'ava'
 import app from '../app'
-import quiz from './resource/quiz.json'
 import * as db from '../app/controller/db'
+
+import quiz from './resource/quiz.json'
 import userTest1 from './resource/user-test-1.json'
+import userTest2 from './resource/user-test-2.json'
+
 import { signupUser, signinUser } from './utils/user.utils'
+import { createQuiz } from './utils//quiz.utils'
 
 test.before(async t => {
   await db.Users.deleteMany({})
   await signupUser(app, userTest1)
+  await signupUser(app, userTest2)
 
   t.context.userTest1 = (await signinUser(app, userTest1)).json()
+  t.context.userTest2 = (await signinUser(app, userTest2)).json()
 })
 
 test.beforeEach(async () => {
   await db.Quizzes.deleteMany({})
 })
 
-test('/api/quiz db data maniputation', async t => {
+test('/api/quiz userTest1 db data maniputation', async t => {
   const T1 = 'GET /api/quiz - return 200 and no quizzes (starting point)'
 
   let allQuizzesRes = await app.inject({
@@ -105,4 +111,19 @@ test('/api/quiz db data maniputation', async t => {
 
   t.is(allQuizzesRes.statusCode, 200, T6)
   t.deepEqual(allQuizzesRes.json(), [], T6)
+})
+
+test('GET /api/quiz return 0 quizzes for userTest1 if the only quiz if assigned to userTest2', async t => {
+  await createQuiz(app, t.context.userTest1, quiz)
+
+  const emptyArrayRes = await app.inject({
+    method: 'GET',
+    url: `/api/quiz`,
+    headers: {
+      'x-access-token': t.context.userTest2.accessToken
+    }
+  })
+
+  t.is(emptyArrayRes.statusCode, 200)
+  t.deepEqual(emptyArrayRes.json(), [])
 })

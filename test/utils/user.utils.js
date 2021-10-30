@@ -5,8 +5,9 @@ export async function signupUser(app, user) {
     payload: user
   })
 
-  if (userSignupRes.statusCode !== 200) {
-    throw new Error('Unexpected statusCode')
+  const { statusCode } = userSignupRes
+  if (statusCode !== 200) {
+    throw new Error(`Unexpected statusCode (${statusCode} found)`)
   }
 
   return userSignupRes
@@ -19,8 +20,9 @@ export async function signinUser(app, user) {
     payload: user
   })
 
-  if (userSigninRes.statusCode !== 200) {
-    throw new Error('Unexpected statusCode')
+  const { statusCode } = userSigninRes
+  if (statusCode !== 200) {
+    throw new Error(`Unexpected statusCode (${statusCode} found)`)
   }
 
   return userSigninRes
