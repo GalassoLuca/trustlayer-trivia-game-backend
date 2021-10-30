@@ -8,7 +8,7 @@ export default function (fastify, opts) {
   fastify.route({
     method: 'GET',
     url: '/quiz',
-    preValidation: verifyToken,
+    onRequest: verifyToken,
     handler: quizController.getQuizzes
   })
 
@@ -18,7 +18,7 @@ export default function (fastify, opts) {
     schema: {
       body: quizSchema
     },
-    preValidation: verifyToken,
+    onRequest: verifyToken,
     preHandler: validateQuiz,
     handler: quizController.addQuiz
   })
@@ -26,7 +26,7 @@ export default function (fastify, opts) {
   fastify.route({
     method: 'GET',
     url: '/quiz/:id',
-    preValidation: verifyToken,
+    onRequest: verifyToken,
     preHandler: validateId,
     handler: quizController.getQuiz
   })
@@ -37,7 +37,7 @@ export default function (fastify, opts) {
     schema: {
       body: quizSchema
     },
-    preValidation: verifyToken,
+    onRequest: verifyToken,
     preHandler: [validateId, validateQuiz],
     handler: quizController.replaceQuiz
   })
@@ -45,7 +45,7 @@ export default function (fastify, opts) {
   fastify.route({
     method: 'DELETE',
     url: '/quiz/:id',
-    preValidation: verifyToken,
+    onRequest: verifyToken,
     preHandler: validateId,
     handler: quizController.deleteQuiz
   })

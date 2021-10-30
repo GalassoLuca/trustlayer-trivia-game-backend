@@ -7,7 +7,7 @@ export default function (fastify, opts) {
     method: 'DELETE',
     url: '/user',
     schema: { body: userSchema },
-    preValidation: verifyToken,
+    onRequest: verifyToken,
     handler: userController.deleteUser
   })
 
@@ -15,7 +15,7 @@ export default function (fastify, opts) {
     method: 'PUT',
     url: '/user',
     schema: { body: userSchema },
-    preValidation: verifyToken,
+    onRequest: verifyToken,
     handler: userController.updateUser
   })
 }
