@@ -5,13 +5,14 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "node --experimental-modules --es-module-specifier-resolution=node ./bin/server.js",
-    "start:debug": "node --inspect --experimental-modules --es-module-specifier-resolution=node ./bin/server.js",
+    "init": "node --es-module-specifier-resolution=node ./bin/init.js",
+    "start": "node --es-module-specifier-resolution=node ./bin/server.js",
+    "start:debug": "node --inspect --es-module-specifier-resolution=node ./bin/server.js",
     "test": "npm run test:ut && npm run test:it",
-    "test:ut": "node --experimental-modules --es-module-specifier-resolution=node ./node_modules/ava/cli.js --verbose **.test.js",
-    "test:it": "node --experimental-modules --es-module-specifier-resolution=node ./node_modules/ava/cli.js --verbose --serial **.test.it.js"
+    "test:ut": "node --es-module-specifier-resolution=node ./node_modules/ava/cli.js --verbose **.test.js",
+    "test:it": "node --es-module-specifier-resolution=node ./node_modules/ava/cli.js --verbose --serial **.test.it.js"
   },
-  "author": "",
+  "author": "Luca Galasso",
   "license": "ISC",
   "devDependencies": {
     "ava": "^3.15.0"

@@ -2,7 +2,7 @@
 
 This is the backend implementation of trivia game.
 
-This module has been developed with the ESM Module Loader (Node.js experimental feature)
+This module has been developed as ECMAScript modules (also known as ESM), using **node** as [Customizing ESM specifier resolution algorithm (a Node.js experimental feature)](https://nodejs.org/api/esm.html#customizing-esm-specifier-resolution-algorithm)
 
 ## Requirements
 
