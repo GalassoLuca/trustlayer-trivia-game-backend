@@ -9,8 +9,8 @@ export async function createQuiz(app, user, quiz) {
   })
 
   const { statusCode } = quizCreationRes
-  if (statusCode !== 201) {
-    throw new Error(`Unexpected statusCode (${statusCode} found)`)
+  if (!/^2\d\d$/.test(statusCode)) {
+    throw new ErrorTest(quizCreationRes.json())
   }
 
   return quizCreationRes.json()

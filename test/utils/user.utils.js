@@ -1,3 +1,5 @@
+import ErrorTest from './ErrorTest'
+
 export async function signupUser(app, user) {
   const userSignupRes = await app.inject({
     method: 'POST',
@@ -6,8 +8,8 @@ export async function signupUser(app, user) {
   })
 
   const { statusCode } = userSignupRes
-  if (statusCode !== 200) {
-    throw new Error(`Unexpected statusCode (${statusCode} found)`)
+  if (!/^2\d\d$/.test(statusCode)) {
+    throw new ErrorTest(userSignupRes.json())
   }
 
   return userSignupRes.json()
@@ -21,8 +23,8 @@ export async function signinUser(app, user) {
   })
 
   const { statusCode } = userSigninRes
-  if (statusCode !== 200) {
-    throw new Error(`Unexpected statusCode (${statusCode} found)`)
+  if (!/^2\d\d$/.test(statusCode)) {
+    throw new ErrorTest(userSigninRes.json())
   }
 
   return userSigninRes.json()

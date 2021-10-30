@@ -7,5 +7,6 @@ const db = client.db(config.DB)
 
 export { ObjectId } from 'mongodb'
 
+export const closeConnection = client.close.bind(client)
 export const Quizzes = db.collection('quizzes')
 export const Users = db.collection('users')
