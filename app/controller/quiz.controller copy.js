@@ -1,10 +1,8 @@
 import * as db from './db'
 import QuizNotFound from '../error/QuizNotFound'
 
-export async function getQuizzes({ user }, reply) {
-  const docs = await db.Quizzes.find({ userId: user._id }).toArray()
-
-  return docs.map(({ userId, ...quiz }) => quiz)
+export async function getQuizzes(request, reply) {
+  return db.Quizzes.find().toArray()
 }
 
 export async function addQuiz({ user, body: quiz }, reply) {
@@ -41,10 +39,7 @@ export async function replaceQuiz({ user, params: { id }, body: quiz }) {
     throw new QuizNotFound()
   }
 
-  await db.Quizzes.replaceOne(
-    { _id: db.ObjectId(id) },
-    { ...quiz, userId: user._id }
-  )
+  await db.Quizzes.replaceOne({ _id: db.ObjectId(id) }, quiz)
 
   return quiz
 }

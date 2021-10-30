@@ -5,7 +5,7 @@ import MissingToken from '../error/MissingToken'
 import Unauthorized from '../error/Unauthorized'
 import UserNotFound from '../error/UserNotFound'
 
-export default async function verifyToken(request, reply, next) {
+export default async function verifyToken(request, reply) {
   const token = request.headers['x-access-token']
 
   if (!token) {
@@ -30,6 +30,4 @@ export default async function verifyToken(request, reply, next) {
   }
 
   request.user = user
-
-  next()
 }
