@@ -8,10 +8,21 @@ This module has been developed as ECMAScript modules (also known as ESM), using 
 
 This module is developed with [Node.js](https://nodejs.org/) and it uses [MongoDB](https://www.mongodb.com/) as database.
 
-### Start the server
+### Install dependences
 
 ```bash
 npm install
+```
+
+### Init the db (create a user)
+
+```bash
+npm run init
+```
+
+### Start the server
+
+```bash
 npm start
 ```
 
