@@ -1,6 +1,7 @@
 export default {
   description: 'A quiz',
   type: 'object',
+  required: ['name', 'questions'],
   properties: {
     name: { type: 'string' },
     questions: {
@@ -8,11 +9,11 @@ export default {
       items: { $ref: '#/$defs/question' }
     }
   },
-  required: ['name', 'questions'],
   $defs: {
     question: {
       description: 'A question of the quiz',
       type: 'object',
+      required: ['question', 'answers'],
       properties: {
         question: { type: 'string' },
         answers: {
@@ -26,8 +27,7 @@ export default {
             }
           }
         }
-      },
-      required: ['question', 'answers']
+      }
     }
   }
 }

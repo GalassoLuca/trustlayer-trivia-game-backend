@@ -3,7 +3,7 @@ import IncorrectBody from '../error/IncorrectBody'
 export default function validate({ body }, res, next) {
   const { name, questions = [] } = body
 
-  if (!name) {
+  if (!name?.length) {
     throw new IncorrectBody('quiz name is required')
   }
 
