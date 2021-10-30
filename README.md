@@ -3,9 +3,15 @@
 This is the backend implementation of trivia game.
 
 This module has been developed with the ESM Module Loader (Node.js experimental feature)
-## Start the server
+
+## Requirements
+
+This module is developed with [Node.js](https://nodejs.org/) and it uses [MongoDB](https://www.mongodb.com/) as database.
+
+### Start the server
 
 ```bash
+npm install
 npm start
 ```
 
