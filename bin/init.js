@@ -2,12 +2,14 @@ import { createLog } from '../log'
 import { signup } from '../app/controller/auth.controller'
 import * as db from '../app/controller/db'
 
-const log = createLog('db')
+const log = createLog('init')
 
 const user = {
   username: 'user',
   password: 'pwd'
 }
+
+log.info(' === initialization start === ')
 
 log.info('creating user %o', user)
 
@@ -23,3 +25,5 @@ try {
 }
 
 db.closeConnection()
+
+log.info(' ===  initialization end  === ')

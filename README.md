@@ -2,7 +2,7 @@
 
 This is the backend implementation of trivia game.
 
-This module has been developed as ECMAScript modules (also known as ESM), using **node** as [Customizing ESM specifier resolution algorithm (a Node.js experimental feature)](https://nodejs.org/api/esm.html#customizing-esm-specifier-resolution-algorithm)
+This module has been developed as ECMAScript modules (also known as ESM), using **node** as [custom ESM resolution algorithm (a Node.js experimental feature)](https://nodejs.org/api/esm.html#customizing-esm-specifier-resolution-algorithm)
 
 ## Requirements
 
@@ -24,6 +24,12 @@ npm run init
 
 ```bash
 npm start
+```
+
+If you'd like to run both the initialization and start the server at the same time, run the following command
+
+```bash
+npm run init && npm start
 ```
 
 ## Auth
